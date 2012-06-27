@@ -1,5 +1,5 @@
 var express  = require('express');
-var SendGrid = require('sendgrid-nodejs').SendGrid;
+var SendGrid = require('sendgrid').SendGrid;
 var sendgrid = new SendGrid('johnnyfuchs', 'taped99zeSt*');
 
 var app = express.createServer();
