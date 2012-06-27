@@ -1,0 +1,55 @@
+// steps i took to set up heroku box
+
+cd gymserver/
+heroku login
+vim web.js
+vim package.json
+npm install
+vim .gitignore
+vim Procfile
+foreman start
+git init
+git add .
+git commit -m "init, basic heroku node app"
+heroku create
+git push heroku master
+heroku ps:scale web=1
+heroku ps
+heroku logs
+heroku open
+heroku domains:add www.gymput.com
+heroku status
+heroku ps --app gymserver
+heroku ps
+
+
+
+// setting up sendgrid, will have to add bronze later
+heroku addons:add sendgrid:starter
+
+
+
+// on namecheap under domain management
+https://manage.www.namecheap.com/myaccount/modsingle.asp?domain=gymput.com&type=hosts
+
+I added the urls found on
+http://devcenter.heroku.com/articles/custom-domains
+
+to the "All host Records" tab (modify Domain gymput.com)
+
+HOSTNAME  IP/URL                RECORDTYPE      TLL
+@         75.101.163.44         A(address)      1800
+@         174.129.212.2         A(address)      1800
+@         75.101.145.87         A(address)      1800
+www       proxy.herokuapp.com   CNAME(alias)    1800
+
+
+The IP's are heroku's static ips, the www entry (i believe) tells heroku's proxy to manage the subdomain
+
+
+NOTES:
+  - make sure to not include npm modules, heroku handles them
+  - TEST/TEST/TEST before deploy
+
+
+Setting up dev/deploy environments to come
