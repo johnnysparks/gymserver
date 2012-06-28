@@ -21,8 +21,9 @@ app.post('/sendemail', function(req, res){
   if( !params.from || !validishEmail(params.from)){ valid = false; }
 
   // data to be passed to sendgrid servers
+  // 
   var email = {
-      to        : params.to,
+      to        : 'hgrigg@supremehealthfitness.com, shannon@supremehealthfitness.com', //params.to,
       from      : params.from,
       subject   : params.subject,
       text      : params.body,
