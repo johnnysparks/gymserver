@@ -17,28 +17,67 @@ app.post('/sendemail', function(req, res){
   var params = req.body;
   var valid  = true;
 
-  if( !params.to   || !validishEmail(params.to))  { valid = false; }
+  //if( !params.to   || !validishEmail(params.to))  { valid = false; }
   if( !params.from || !validishEmail(params.from)){ valid = false; }
 
   // data to be passed to sendgrid servers
   // 
-  var email = {
-      to        : 'hgrigg@supremehealthfitness.com, shannon@supremehealthfitness.com', //params.to,
+  var email1 = {
+      to        : 'hgrigg@supremehealthfitness.com', //params.to,
       from      : params.from,
       subject   : params.subject,
       text      : params.body,
-  };
-
-  if( params.attBody && params.attName ){
-      email.files = [{
+      files     : [{
         filename : params.attName,
         content  : new Buffer(params.attBody)
-      }];
+      }]
+  }
+  var email2 = {
+      to        : 'shannon@supremehealthfitness.com', //params.to,
+      from      : params.from,
+      subject   : params.subject,
+      text      : params.body,
+      files     : [{
+        filename : params.attName,
+        content  : new Buffer(params.attBody)
+      }]
+  }
+  var email3 = {
+      to        : 'johnnyfuchs@gmail.com', //params.to,
+      from      : params.from,
+      subject   : params.subject,
+      text      : params.body,
+      files     : [{
+        filename : params.attName,
+        content  : new Buffer(params.attBody)
+      }]
   }
 
   if(valid){
     // Fire off the sendgrid email
-    sendgrid.send( email , 
+    sendgrid.send( email1 , 
+      function(suc, err){
+        if(err){
+          result.status  = "error";
+          result.message = "sendgrid error";
+          result.data    = err;
+        } else {
+          result.data    = suc;
+        }
+        //res.send(result);
+    });
+    sendgrid.send( email3 , 
+      function(suc, err){
+        if(err){
+          result.status  = "error";
+          result.message = "sendgrid error";
+          result.data    = err;
+        } else {
+          result.data    = suc;
+        }
+        //res.send(result);
+    });
+    sendgrid.send( email2 , 
       function(suc, err){
         if(err){
           result.status  = "error";
@@ -49,7 +88,6 @@ app.post('/sendemail', function(req, res){
         }
         res.send(result);
     });
-
   } else {
     result.status = "error";
     result.message= "Invalid email address";
