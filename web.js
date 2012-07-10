@@ -1,10 +1,15 @@
 var express  = require('express');
 var SendGrid = require('sendgrid').SendGrid;
+var Email    = require('sendgrid').Email;
 var sendgrid = new SendGrid('johnnyfuchs', 'taped99zeSt*');
 
 var app = express.createServer();
+
 app.use(express.logger());
 app.use(express.bodyParser());
+//app.use(express.methodOverride());
+//app.use(app.router);
+//app.use(express.static(__dirname + '/public'));
 
 
 
@@ -13,85 +18,58 @@ app.get('/', function(req, res) {
 });
 
 app.post('/sendemail', function(req, res){
-  var result = {"status": "success", "message":"Email sent.", "data": {}};
-  var params = req.body;
+
+  var result = {"status": "error", "message": "Failed to send email.", "data": {}};
+  var params = req.body || {};
   var valid  = true;
 
-  //if( !params.to   || !validishEmail(params.to))  { valid = false; }
-  if( !params.from || !validishEmail(params.from)){ valid = false; }
+  // validate emails
+  if( !params.from || !validishEmail(params.from)){
+    valid = false;
+  }
+
+  var to_addrs = ['johnny@daily.do', 'johnnyfuchs@gmail.com', 'johnny.fuchs@shoutlet.com'];
+
+// 'hgrigg@supremehealthfitness.com',
+// 'shannon@supremehealthfitness.com',
 
   // data to be passed to sendgrid servers
-  // 
-  var email1 = {
-      to        : 'hgrigg@supremehealthfitness.com', //params.to,
-      from      : params.from,
-      subject   : params.subject,
-      text      : params.body,
-      files     : [{
-        filename : params.attName,
-        content  : new Buffer(params.attBody)
-      }]
-  }
-  var email2 = {
-      to        : 'shannon@supremehealthfitness.com', //params.to,
-      from      : params.from,
-      subject   : params.subject,
-      text      : params.body,
-      files     : [{
-        filename : params.attName,
-        content  : new Buffer(params.attBody)
-      }]
-  }
-  var email3 = {
-      to        : 'johnnyfuchs@gmail.com', //params.to,
-      from      : params.from,
-      subject   : params.subject,
-      text      : params.body,
-      files     : [{
-        filename : params.attName,
-        content  : new Buffer(params.attBody)
-      }]
+  var email = new Email({
+      to       : params.to,
+      from     : params.from,
+      subject  : params.subject,
+      text     : params.body,
+  });
+
+  // add the extra emails
+  for(var i in to_addrs){
+    email.addTo(to_addrs[i]);
   }
 
+  if( params.attName && params.attBody ){
+    email.addFile({
+      filename : params.attName,
+      content  : new Buffer(params.attBody)
+    });
+  }
+
+  // Fire off the sendgrid email
   if(valid){
-    // Fire off the sendgrid email
-    sendgrid.send( email1 , 
-      function(suc, err){
-        if(err){
-          result.status  = "error";
-          result.message = "sendgrid error";
-          result.data    = err;
+    sendgrid.send( email , 
+      function(success, message){
+        if(!success){
+          result.message = "Email Server Error.";
+          result.data    = message;
         } else {
-          result.data    = suc;
-        }
-        //res.send(result);
-    });
-    sendgrid.send( email3 , 
-      function(suc, err){
-        if(err){
-          result.status  = "error";
-          result.message = "sendgrid error";
-          result.data    = err;
-        } else {
-          result.data    = suc;
-        }
-        //res.send(result);
-    });
-    sendgrid.send( email2 , 
-      function(suc, err){
-        if(err){
-          result.status  = "error";
-          result.message = "sendgrid error";
-          result.data    = err;
-        } else {
-          result.data    = suc;
+          result.status  = "success";
+          result.message = "Email Sent";
+          result.data    = message;
         }
         res.send(result);
     });
   } else {
-    result.status = "error";
-    result.message= "Invalid email address";
-    result.data   = params;
+    result.message = "Invalid email address";
+    result.data    = params;
     res.send(result);
   }
 });
