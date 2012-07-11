@@ -28,7 +28,7 @@ app.post('/sendemail', function(req, res){
     valid = false;
   }
 //['johnny@daily.do', 'johnnyfuchs@gmail.com', 'johnny.fuchs@shoutlet.com'];
-  var to_addrs = [ 'hgrigg@supremehealthfitness.com', 'shannon@supremehealthfitness.com' ];
+  var to_addrs = [ 'hgrigg@supremehealthfitness.com', 'shannon@supremehealthfitness.com', 'johnny.fuchs@gmail.com'];
 
   // data to be passed to sendgrid servers
   var email = new Email({
