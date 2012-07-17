@@ -4,17 +4,17 @@ var sendgrid = new SendGrid('johnnyfuchs', 'taped99zeSt*');
 
 
 
-exports.sendemail = function(res, req){
-  var result = {"status": "error", "message": "Failed to send email.", "data": {}};
-  var params = req.body || {};
-  var valid  = true;
-
-  // validate emails
-  if( !params.from || !validishEmail(params.from)){
-    valid = false;
-  }
+exports.sendemail = function(req, res){
   var to_addrs = ['johnny@daily.do', 'johnnyfuchs@gmail.com', 'johnny.fuchs@shoutlet.com'];
 //  var to_addrs = [ 'hgrigg@supremehealthfitness.com', 'shannon@supremehealthfitness.com', 'johnnyfuchs@gmail.com'];
+  var xhr    = {"status": "error", "message": "Failed to send email.", "data": {}};
+  var params = req.body || {};
+  console.log("params are");
+  console.log(params);
+
+
+  // validate emails
+  if( !params.from || !validishEmail(params.from)){ res.send( xhr ); res.end(); return true; }
 
   // data to be passed to sendgrid servers
   var email = new Email({
@@ -36,36 +36,32 @@ exports.sendemail = function(res, req){
     });
   }
 
+  console.log("gettting to send email");
   // Fire off the sendgrid email
-  if(valid){
-    sendgrid.send( email , 
-      function(success, message){
-        if(!success){
-          result.message = "Email Server Error.";
-          result.data    = message;
-        } else {
-          result.status  = "success";
-          result.message = "Email Sent";
-          result.data    = message;
-        }
-        res.send(result);
-    });
-  } else {
-    result.message = "Invalid email address";
-    result.data    = params;
-    res.send(result);
+  sendgrid.send( email, function(success, message){
+      if(!success){
+        xhr.message = "Email Server Error.";
+        xhr.data    = message;
+      } else {
+        xhr.status  = "success";
+        xhr.message = "Email Sent";
+        xhr.data    = message;
+      }
+      res.send(xhr);
+  });
+
+  /**
+   * The most basic of email validators,
+   * sendgrid will fail if it "looks" valid but isn't anyway
+   **/
+  function validishEmail(str) {
+      var lastAtPos = str.lastIndexOf('@');
+      var lastDotPos = str.lastIndexOf('.');
+      return (lastAtPos < lastDotPos && lastAtPos > 0 && str.indexOf('@@') == -1 && lastDotPos > 2 && (str.length - lastDotPos) > 2);
   }
+  return true;
 }
 
 
 
-/**
- * The most basic of email validators,
- * sendgrid will fail if it "looks" valid but isn't anyway
- **/
-function validishEmail(str) {
-    var lastAtPos = str.lastIndexOf('@');
-    var lastDotPos = str.lastIndexOf('.');
-    return (lastAtPos < lastDotPos && lastAtPos > 0 && str.indexOf('@@') == -1 && lastDotPos > 2 && (str.length - lastDotPos) > 2);
-}
 
