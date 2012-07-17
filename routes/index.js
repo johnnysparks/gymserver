@@ -1,10 +1,10 @@
-var SendGrid = require('sendgrid').SendGrid,
-    Email    = require('sendgrid').Email;
+var SendGrid = require('sendgrid').SendGrid;
+var Email    = require('sendgrid').Email;
 var sendgrid = new SendGrid('johnnyfuchs', 'taped99zeSt*');
 
 
 
-exports.sendemail = function(){
+exports.sendemail = function(res, req){
   var result = {"status": "error", "message": "Failed to send email.", "data": {}};
   var params = req.body || {};
   var valid  = true;

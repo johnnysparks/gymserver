@@ -1,5 +1,5 @@
 var express  = require('express'),
-    rountes  = require('./routes');
+    routes  = require('./routes');
 
 var app = express.createServer();
 
