@@ -1,20 +1,26 @@
-var express  = require('express');
-var SendGrid = require('sendgrid').SendGrid;
-var Email    = require('sendgrid').Email;
-var sendgrid = new SendGrid('johnnyfuchs', 'taped99zeSt*');
+var express  = require('express'),
+    rountes  = require('./routes');
 
 var app = express.createServer();
 
-app.use(express.logger());
-app.use(express.bodyParser());
-//app.use(express.methodOverride());
-//app.use(app.router);
-//app.use(express.static(__dirname + '/public'));
+app.configure(function(){
+  app.use(express.logger());
+  app.use(express.bodyParser());
+  app.use(express.methodOverride());
+  app.use(app.router);
+  app.use(express.static(__dirname + '/public'));
+  app.set("view options", {layout: false});     // disable layout
+  app.register('html', {                        // make a custom html template
+    compile: function(str, options){ return function(locals){ return str; }; }
+  });
+  app.set('view engine', 'html');
+  app.set('views', __dirname + '/views');
+});
 
 
 
 app.get('/', function(req, res) {
-  res.send('Gymput. Coming to a gym near you.');
+  res.render('index.html');
 });
 
 app.post('/sendemail', function(req, res){
@@ -27,7 +33,7 @@ app.post('/sendemail', function(req, res){
   if( !params.from || !validishEmail(params.from)){
     valid = false;
   }
-//['johnny@daily.do', 'johnnyfuchs@gmail.com', 'johnny.fuchs@shoutlet.com'];
+//var to_addrs = ['johnny@daily.do', 'johnnyfuchs@gmail.com', 'johnny.fuchs@shoutlet.com'];
   var to_addrs = [ 'hgrigg@supremehealthfitness.com', 'shannon@supremehealthfitness.com', 'johnnyfuchs@gmail.com'];
 
   // data to be passed to sendgrid servers
