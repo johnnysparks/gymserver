@@ -1,6 +1,7 @@
-var SendGrid = require('sendgrid').SendGrid;
-var Email    = require('sendgrid').Email;
-var sendgrid = new SendGrid('johnnyfuchs', 'taped99zeSt*');
+var passport = require('passport'),
+    SendGrid = require('sendgrid').SendGrid,
+    Email    = require('sendgrid').Email,
+    sendgrid = new SendGrid('johnnyfuchs', 'taped99zeSt*');
 
 
 
@@ -36,7 +37,7 @@ exports.sendemail = function(req, res){
     });
   }
 
-  console.log("gettting to send email");
+  console.log("getting to send email");
   // Fire off the sendgrid email
   sendgrid.send( email, function(success, message){
       if(!success){
@@ -63,5 +64,9 @@ exports.sendemail = function(req, res){
 }
 
 
-
-
+exports.login = function(req, res){
+  passport.authenticate('local', {
+    successRedirect: '/',
+    failureRedirect: '/login'
+  });
+}
