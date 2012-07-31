@@ -1,8 +1,7 @@
 var express  = require('express'),
     passport = require('passport'),
     fs       = require('fs'),
-    routes   = require('./routes'),
-    gp_conf  = require('
+    routes   = require('./routes');
 
 var app = express.createServer();
 
@@ -26,16 +25,17 @@ app.set('views', __dirname + '/views');
 
 
 
-// routing (ssl handling)
+/* routing (ssl handling)
 app.get('*',function(req,res,next){
   if(req.headers['x-forwarded-proto']!='https')
     res.redirect('https://localhost/'+req.url)
   else
-    next() /* Continue to other routes if we're not redirecting */
+    next() // Continue to other routes if we're not redirecting
 })
+*/
 
 app.get('/', function(req, res) { res.render('index.html'); });
-app.post('/login', routes.login); 
+app.get('/login', routes.login); 
 app.post('/sendemail', routes.sendemail );
 
 var port = process.env.PORT || 5000;

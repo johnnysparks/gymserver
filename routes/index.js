@@ -1,10 +1,17 @@
+    // passport for authentication
 var passport = require('passport'),
+    // email services
     SendGrid = require('sendgrid').SendGrid,
     Email    = require('sendgrid').Email,
     sendgrid = new SendGrid('johnnyfuchs', 'taped99zeSt*');
+    // database connection
+    mongoose = require('mongoose'),
+    db       = mongoose.connect('mongodb://localhost/test'),
+    Users    = require('../schemas').Users;
 
-
-
+/**
+ * SEND EMAILS
+ **/
 exports.sendemail = function(req, res){
   var to_addrs = ['johnny@daily.do', 'johnnyfuchs@gmail.com', 'johnny.fuchs@shoutlet.com'];
 //  var to_addrs = [ 'hgrigg@supremehealthfitness.com', 'shannon@supremehealthfitness.com', 'johnnyfuchs@gmail.com'];
@@ -65,6 +72,8 @@ exports.sendemail = function(req, res){
 
 
 exports.login = function(req, res){
+  console.log(Users);
+  Users.insert({name: 'johnny'});
   passport.authenticate('local', {
     successRedirect: '/',
     failureRedirect: '/login'
