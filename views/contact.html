@@ -40,12 +40,12 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#"><img ?="" alt="gymput" src="../public/assets/img/logo.png">
+          <a class="brand" href="index.html"><img ?="" alt="gymput" src="../public/assets/img/logo.png">
 		  </a>
           <div class="nav-collapse">
             <ul class="nav">
               <li><a href="faq.html">FAQ</a></li>
-              <li><a href="contact.html">Contact</a></li>
+              <li><a href="#contact">Contact</a></li>
               <li class="active"><a href="#login">Login</a></li>
             </ul>
           </div><!--/.nav-collapse -->
@@ -57,54 +57,38 @@
 
       <!-- Main hero unit for a primary marketing message or call to action -->
       <div class="hero-unit">
-		<!--<div class="big-media">
-			<a class="youtube cboxElement" title="gymput overview" href="http://www.youtube.com/embed/LrywyB-_a2M?rel=0&wmode=transparent&autoplay=1">
-				<img ?="" src="../public/assets/css/ipad-dbell.png" alt="ipad">
-			</a>
-		</div>-->
-      <div class="row">
-        <div class="span4">
-        <p>
-			<h1>Cloud-based
-				<br>
-				gym prospecting app
-			</h1>
-		</p>
-        <p><a class="btn btn-primary btn-large" href="contact.html">Get Started Now &raquo;</a></p>
-        </div>
-        <div class="span4">
-		    <iframe allowfullscreen="" frameborder="10" height="293" src="http://www.youtube.com/embed/1DKm96Ftfko" width="521"></iframe>
-         </div>
-      </div>
-			
-      </div>	  
-      <div class="row">
-        <div class="span3">
-			<img alt="heart" src="../public/assets/img/icon-heart.png" ?=""><br>
-          <h2>Easy</h2>
-           <p>Have prospects enter data electronically using a tablet device.  We've optimized the data collection process to make it very user friendly and easy.</p>
-          <!--<p><a class="btn" href="#">View details &raquo;</a></p>-->
-        </div>
-        <div class="span3">
-			<img ?="" src="../public/assets/img/icon-dbell.png" alt="dbell"><br>
-          <h2>Fun</h2>
-           <p>No more boring paper forms: there's a cool app for that!  You could even include a picture or video of the latest equipment you have at the gym.  Try doing that with a paper form!</p>
-          <!--<p><a class="btn" href="#">View details &raquo;</a></p>-->
-       </div>
-        <div class="span3">
-			<img ?="" src="../public/assets/img/icon-arrows.png" alt="arrows"><br>
-          <h2>Interactive</h2>
-          <p>Capture more prospect data using customizable intuitive design.  The more you learn about your prospect, the better your marketing and follow-up efforts!  You could also connect with your prospects on social media, right from the app!</p>
-          <!--<p><a class="btn" href="#">View details &raquo;</a></p>-->
-        </div>
-        <div class="span3">
-			<img ?="" src="../public/assets/img/icon-dollar.png" alt="dollar"><br>
-          <h2>Efficient</h2>
-          <p>Improve workflow and never miss a follow-up with a prospect!  Their data is available to you electronically, so no more manual data entry and trying to decipher handwritings!</p>
-          <!--<p><a class="btn" href="#">View details &raquo;</a></p>-->
-        </div>
-      </div>
+		<form class="form-horizontal" id="contactInfo" method='post' action=''>
+		<fieldset>
 
+		<h1>Talk to us to make your prospecting awesome.</h1>
+
+		<div class="control-group">
+		<label class="control-label">Name</label>
+		<div class="controls">
+		<input type="text" class="input-xlarge" id="user_name" name="user_name" rel="popover" data-content="Enter your first and last name." data-original-title="Full Name">
+		</div>
+		</div>
+
+
+		<div class="control-group">
+		<label class="control-label">Email</label>
+		<div class="controls">
+		<input type="text" class="input-xlarge" id="user_email" name="user_email" rel="popover" data-content="What's your email address?" data-original-title="Email">
+		</div>
+		</div>
+		
+		<div class="control-group">
+		<label class="control-label"></label>
+		<div class="controls">
+		<button type="submit" class="btn btn-primary btn-large" >Get in touch!</button>
+		</div>
+		</div>
+
+		</fieldset>
+		</form>
+		
+	</div>
+	  
       <hr>
 
       <footer>
@@ -137,8 +121,8 @@
             </div>
           </div>
         </div>
-      </div>-->
-      </footer>
+      </div>
+      </footer>-->
 
     </div> <!-- /container -->
 	
@@ -159,10 +143,43 @@
     <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-collapse.js"></script>
     <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-carousel.js"></script>
     <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-typeahead.js"></script>
-<!--	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
-	<script src="assets/js/jquery-ui-1.8.16.custom.min.js"></script>
-	<script src="assets/js/jquery.colorbox-min.js"></script>
-	<script src="assets/js/index.js"></script>
--->
+
+ <script type="text/javascript" src="http://jzaefferer.github.com/jquery-validation/jquery.validate.js"></script>
+ <script type="text/javascript">
+$(document).ready(function(){
+$('#contactInfo input').hover(function()
+{
+$(this).popover('show')
+});
+
+$("#contactInfo").validate({
+rules:{
+	user_name:"required",
+	user_email:{
+		required:true,
+		email: true
+		},
+	},
+messages:{
+	user_name:"Enter your first and last name",
+	user_email:{
+		required:"Enter your email address",
+		email:"Enter valid email address"
+		},
+	},
+	
+errorClass: "help-inline",
+errorElement: "span",
+highlight:function(element, errorClass, validClass) {
+$(element).parents('.control-group').addClass('error');
+},
+unhighlight: function(element, errorClass, validClass) {
+$(element).parents('.control-group').removeClass('error');
+$(element).parents('.control-group').addClass('success');
+}
+});
+});
+</script>
+	
   </body>
 </html>
