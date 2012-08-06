@@ -7,7 +7,7 @@ var passport = require('passport'),
     // database connection
     mongoose = require('mongoose'),
     db       = mongoose.connect('mongodb://localhost/test'),
-    Users    = require('../schemas').Users;
+    User    = require('../schemas').User;
 
 /**
  * SEND EMAILS
@@ -77,5 +77,16 @@ exports.login = function(req, res){
   passport.authenticate('local', {
     successRedirect: '/',
     failureRedirect: '/login'
+  });
+}
+
+
+exports.insert = function(req, res){
+  var u = new User();
+  u.email = "johnnyfuchs@gmail.com";
+  u.name  = "johnny";
+  u.save(function(err){
+    if(err){ console.log("created user."); }
+    else { res.send("created user"); }
   });
 }

@@ -36,6 +36,7 @@ app.get('*',function(req,res,next){
 
 app.get('/', function(req, res) { res.render('index.html'); });
 app.get('/login', routes.login); 
+app.get('/insert', routes.insert); 
 app.post('/sendemail', routes.sendemail );
 
 var port = process.env.PORT || 5000;
