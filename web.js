@@ -5,9 +5,18 @@ var express  = require('express'),
 
 var app = express.createServer();
 
+// express middleware
 app.use(express.logger());
 app.use(express.bodyParser());
 app.use(express.methodOverride());
+app.use(express.cookieParser());
+app.use(express.session({secret:'something'}));
+
+// passport
+app.use(passport.initialize());
+app.use(passport.session());
+
+// views and routes
 app.use(app.router);
 app.use(express.cookieParser());
 app.use(express.session({ secret: '9h8adfs9hnlka2f101avVAS' }));
