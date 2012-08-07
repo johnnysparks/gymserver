@@ -7,7 +7,7 @@ var passport = require('passport'),
     // database connection
     mongoose = require('mongoose'),
     db       = mongoose.connect('mongodb://localhost/test'),
-    User    = require('../schemas').User;
+    User    = require('../models').User;
 
 /**
  * SEND EMAILS
