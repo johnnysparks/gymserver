@@ -16,6 +16,13 @@ gp.init = function(){
       error:   function(o){ alert("unable to log in!"); }
     });
   });
+  this.bindNav();
+}
+
+
+gp.bindNav = function(){
+  $('a[href="faq"]'    ).on('click', function(e){ e.preventDefault(); $('#main').load('faq');     return false; });
+  $('a[href="contact"]').on('click', function(e){ e.preventDefault(); $('#main').load('contact'); return false; });
 }
 
 $(function(){ gp.init(); });
