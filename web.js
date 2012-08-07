@@ -1,7 +1,11 @@
 var express  = require('express'),
     passport = require('passport'),
+    LocalStrategy = require('passport-local').Strategy,
     fs       = require('fs'),
-    routes   = require('./routes');
+    routes   = require('./routes'),
+    mongoose = require('mongoose'),
+    db       = mongoose.connect('mongodb://localhost/test'),
+    User     = require('./models').User;
 
 var app = express.createServer();
 
@@ -12,10 +16,6 @@ app.use(express.methodOverride());
 app.use(express.cookieParser());
 app.use(express.session({secret:'something'}));
 
-// passport
-app.use(passport.initialize());
-app.use(passport.session());
-
 // views and routes
 app.use(app.router);
 app.use(express.cookieParser());
@@ -24,6 +24,31 @@ app.use(express.session({ secret: '9h8adfs9hnlka2f101avVAS' }));
 // passport
 app.use(passport.initialize());
 app.use(passport.session());
+passport.use(new LocalStrategy(
+  function(username, password, done) {
+    User.findOne({ username: username }, function(err, user) {
+      if (err) { return done(err); }
+      if (!user) {
+        return done(null, false, { message: 'Unknown user' });
+      }
+      if (!user.validPassword(password)) {
+        return done(null, false, { message: 'Invalid password' });
+      }
+      return done(null, user);
+    });
+  }
+));
+
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+  User.findOne(id, function (err, user) {
+    done(err, user);
+  });
+});
+
 
 // view rendering
 app.use(express.static(__dirname + '/public'));
@@ -43,10 +68,13 @@ app.get('*',function(req,res,next){
 })
 */
 
-app.get('/', function(req, res) { res.render('index.html'); });
-app.get('/login', routes.login); 
-app.get('/insert', routes.insert); 
-app.post('/sendemail', routes.sendemail );
+app.get('/',        function(req, res) { res.render('index.html');   });
+app.get('/contact', function(req, res) { res.render('contact.html'); });
+app.get('/faq',     function(req, res) { res.render('faq.html');     });
+
+app.get('/login',       routes.login); 
+app.get('/insert',      routes.insert); 
+app.post('/sendemail',  routes.sendemail );
 
 var port = process.env.PORT || 5000;
 app.listen(port, function() {

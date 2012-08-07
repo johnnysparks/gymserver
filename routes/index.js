@@ -73,7 +73,6 @@ exports.sendemail = function(req, res){
 
 exports.login = function(req, res){
   console.log(Users);
-  Users.insert({name: 'johnny'});
   passport.authenticate('local', {
     successRedirect: '/',
     failureRedirect: '/login'
@@ -88,5 +87,7 @@ exports.insert = function(req, res){
   u.save(function(err){
     if(err){ console.log("created user."); }
     else { res.send("created user"); }
+    res.end();
   });
+  
 }
