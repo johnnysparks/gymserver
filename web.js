@@ -2,7 +2,10 @@ var express  = require('express'),
     passport = require('passport'),
     LocalStrategy = require('passport-local').Strategy,
     fs       = require('fs'),
-    routes   = require('./routes');
+    routes   = require('./routes'),
+    mongoose = require('mongoose'),
+    db       = mongoose.connect('mongodb://localhost/test'),
+    User     = require('./models').User;
 
 var app = express.createServer();
 

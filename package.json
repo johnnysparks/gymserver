@@ -3,7 +3,6 @@
   "version": "0.0.1",
   "dependencies": {
     "express": "2.5.x",
-    "pg": "0.5.x",
     "passport": "0.2.3",
     "sendgrid": "0.2.1"
   },
