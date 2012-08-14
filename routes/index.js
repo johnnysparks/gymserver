@@ -5,9 +5,6 @@ var passport = require('passport'),
     Email    = require('sendgrid').Email,
     sendgrid = new SendGrid('johnnyfuchs', 'taped99zeSt*');
     // database connection
-    mongoose = require('mongoose'),
-    db       = mongoose.connect('mongodb://localhost/test'),
-    User    = require('../models').User;
 
 /**
  * SEND EMAILS
