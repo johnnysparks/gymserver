@@ -1,13 +1,25 @@
-    // passport for authentication
-var passport = require('passport'),
+var WebService = require('../lib/cloudmine-0.9.js'),
     // email services
     SendGrid = require('sendgrid').SendGrid,
     Email    = require('sendgrid').Email,
-    sendgrid = new SendGrid('johnnyfuchs', 'taped99zeSt*');
-    // database connection
-    mongoose = require('mongoose'),
-    db       = mongoose.connect('mongodb://localhost/test'),
-    User    = require('../models').User;
+    CONFIG   = require('../config'),
+    Parse    = require('../lib/parse-1.0.15.js').Parse;
+
+Parse.initialize( CONFIG.parse.appid, CONFIG.parse.jsKey );
+
+var sendgrid = new SendGrid( CONFIG.sendgrid  );
+var wc       = new WebService( CONFIG.cloudmine );
+
+var TestObj  = Parse.Object.extend('TestObj');
+var t = new TestObj();
+
+t.save({
+  attr : "I am a test attribute",
+  also : "And also schemaless",
+  but : "We should try a user next"
+}, {
+  success: function(o){ console.log(o); }
+});
 
 /**
  * SEND EMAILS
@@ -71,23 +83,9 @@ exports.sendemail = function(req, res){
 }
 
 
-exports.login = function(req, res){
-  console.log(Users);
-  passport.authenticate('local', {
-    successRedirect: '/',
-    failureRedirect: '/login'
-  });
-}
+exports.login = function(req, res){ 
 
 
-exports.insert = function(req, res){
-  var u = new User();
-  u.email = "johnnyfuchs@gmail.com";
-  u.name  = "johnny";
-  u.save(function(err){
-    if(err){ console.log("created user."); }
-    else { res.send("created user"); }
-    res.end();
-  });
-  
 }
+
+exports.insert = function(req, res){ res.send("not implimented"); }
