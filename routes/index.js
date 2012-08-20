@@ -13,7 +13,7 @@ Parse.initialize( CONFIG.parse.appid, CONFIG.parse.jsKey );
  * SEND EMAILS
  **/
 exports.sendemail = function(req, res){
-  var req.body = req.body || {};
+  req.body = req.body || {};
   var to_addrs = ['johnny@daily.do', 'johnnyfuchs@gmail.com', 'johnny.fuchs@shoutlet.com'];
 //  var to_addrs = [ 'hgrigg@supremehealthfitness.com', 'shannon@supremehealthfitness.com', 'johnnyfuchs@gmail.com'];
 
