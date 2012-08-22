@@ -34,6 +34,7 @@ app.get('/contact', function(req, res) { res.render('contact.html'); });
 app.get('/faq',     function(req, res) { res.render('faq.html');     });
 
 app.get('/login',       routes.login); 
+app.post('/signup',      routes.signup); 
 app.get('/insert',      routes.insert); 
 app.post('/sendemail',  routes.sendemail );
 

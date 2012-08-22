@@ -4,6 +4,7 @@ var SendGrid = require('sendgrid').SendGrid,
     CONFIG   = require('../config'),
     Parse    = require('../lib/parse-1.0.15.js').Parse,
     Emailer  = require('../lib/classes/emailer.js');
+    Client   = require('../lib/classes/client.js');
 
 Parse.initialize( CONFIG.parse.appid, CONFIG.parse.jsKey );
 
@@ -31,19 +32,23 @@ exports.sendemail = function(req, res){
 }
 
 
-exports.login = function(req, res){ 
-var TestObj  = Parse.Object.extend('TestObj');
-var t = new TestObj();
+exports.login = function(req, res){ }
 
-t.save({
-  attr : "I am a test attribute",
-  also : "And also schemaless",
-  but : "We should try a user next"
-}, {
-  success: function(o){ console.log(o); }
-});
+exports.signup = function(req, res){
+  var response = { error: false, message: "User Created!", data: {}};
+  req.body = req.body || {};
 
-
+  var user = new Client();
+  user.create( req.body.email, req.body.password,
+    function(err, newUser){
+      if(err){
+        response.error = true;
+        response.message = "There was a problem creating your account.";
+        response.data = { user: newUser, errorDetail : err };
+      }
+      res.send(response);
+    }
+  );
 }
 
 exports.insert = function(req, res){ res.send("not implimented"); }
