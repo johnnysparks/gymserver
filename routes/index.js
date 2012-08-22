@@ -14,6 +14,7 @@ Parse.initialize( CONFIG.parse.appid, CONFIG.parse.jsKey );
  **/
 exports.sendemail = function(req, res){
   req.body = req.body || {};
+  console.log(req.body);
   var to_addrs = ['johnny@daily.do', 'johnnyfuchs@gmail.com', 'johnny.fuchs@shoutlet.com'];
 //  var to_addrs = [ 'hgrigg@supremehealthfitness.com', 'shannon@supremehealthfitness.com', 'johnnyfuchs@gmail.com'];
 
