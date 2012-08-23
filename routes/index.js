@@ -32,7 +32,21 @@ exports.sendemail = function(req, res){
 }
 
 
-exports.login = function(req, res){ }
+exports.login = function(req, res){ 
+  var response = { error: false, message: "Logged In.", data: {}};
+  var user = new Client();
+  user.login( req.body.email, req.body.password,
+    function(err, loggedInUser){
+      if(err){
+        response.error = true;
+        response.message = "There was a problem creating your account.";
+        response.data = { user: loggedInUser, errorDetail : err };
+      }
+      res.send(response);
+    }
+  );
+
+}
 
 exports.signup = function(req, res){
   var response = { error: false, message: "User Created!", data: {}};
