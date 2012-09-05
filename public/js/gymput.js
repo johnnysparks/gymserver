@@ -1,3 +1,4 @@
+/*
 var gp = {};
 
 gp.init = function(){
@@ -26,3 +27,4 @@ gp.bindNav = function(){
 }
 
 $(function(){ gp.init(); });
+*/

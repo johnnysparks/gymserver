@@ -29,14 +29,14 @@ app.get('*',function(req,res,next){
 })
 */
 
-app.get('/',        function(req, res) { res.render('index.html');   });
-app.get('/contact', function(req, res) { res.render('contact.html'); });
-app.get('/faq',     function(req, res) { res.render('faq.html');     });
-app.get('/insert',      routes.insert); 
+app.get('/',             function(req, res) { res.render('index.html');   });
 
 app.post('/login',      routes.login); 
 app.post('/signup',     routes.signup); 
 app.post('/sendemail',  routes.sendemail );
+
+
+//app.get('*',              function(req,res){ res.render('index.html');   });
 
 var port = process.env.PORT || 5000;
 app.listen(port, function() {

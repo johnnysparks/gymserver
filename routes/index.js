@@ -3,12 +3,11 @@ var SendGrid = require('sendgrid').SendGrid,
     Email    = require('sendgrid').Email,
     CONFIG   = require('../config'),
     Parse    = require('../lib/parse-1.0.15.js').Parse,
-    Emailer  = require('../lib/classes/emailer.js');
-    Client   = require('../lib/classes/client.js');
+    Emailer  = require('../lib/classes/emailer.js'),
+    Client   = require('../lib/classes/client.js'),
+    ClientModel = require('../models/client.js');
 
 Parse.initialize( CONFIG.parse.appid, CONFIG.parse.jsKey );
-
-
 
 /**
  * SEND EMAILS
@@ -52,17 +51,18 @@ exports.signup = function(req, res){
   var response = { error: false, message: "User Created!", data: {}};
   req.body = req.body || {};
 
-  var user = new Client();
-  user.create( req.body.email, req.body.password,
-    function(err, newUser){
-      if(err){
-        response.error = true;
-        response.message = "There was a problem creating your account.";
-        response.data = { user: newUser, errorDetail : err };
-      }
-      res.send(response);
+  var client = new ClientModel();
+  client.name.display  = req.body.name;
+  client.email.primary = req.body.email;
+  client.password      = req.body.password;
+  client.save(function(err){
+    if(err){
+      response.error = true;
+      response.message = "Error Creating User";
+      response.data = req.body;
     }
-  );
+    res.send(response);
+  });
 }
 
 exports.insert = function(req, res){ res.send("not implimented"); }
