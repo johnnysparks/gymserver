@@ -2,12 +2,9 @@
 var SendGrid = require('sendgrid').SendGrid,
     Email    = require('sendgrid').Email,
     CONFIG   = require('../config'),
-    Parse    = require('../lib/parse-1.0.15.js').Parse,
     Emailer  = require('../lib/classes/emailer.js'),
     Client   = require('../lib/classes/client.js'),
     ClientModel = require('../models/client.js');
-
-Parse.initialize( CONFIG.parse.appid, CONFIG.parse.jsKey );
 
 /**
  * SEND EMAILS
