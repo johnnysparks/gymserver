@@ -1,4 +1,4 @@
-var mongoUri  = process.env.MONGOLAB_URI,
+var mongoUri  = process.env.MONGOLAB_URI || "mongodb://localhost/gymserver",
     db        = require('mongoose').connect( mongoUri );
     Schema    = db.Schema;
 

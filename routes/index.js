@@ -3,7 +3,6 @@ var SendGrid = require('sendgrid').SendGrid,
     Email    = require('sendgrid').Email,
     CONFIG   = require('../config'),
     Emailer  = require('../lib/classes/emailer.js'),
-    Client   = require('../lib/classes/client.js'),
     ClientModel = require('../models/client.js');
 
 /**
