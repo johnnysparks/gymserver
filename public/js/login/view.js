@@ -1,9 +1,10 @@
 var LoginView = Backbone.View.extend({
   templates: {
-    "unauthed" : ich.login_unauth(),
+    "unauthed" : "",
   },
 
   initialize: function(){
+		this.templates.unauthed = ich.login_unauth();
     $('body').append(this.render().el);
   },
 
