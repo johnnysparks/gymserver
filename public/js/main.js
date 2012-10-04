@@ -1,8 +1,8 @@
 $(function(){ // begin dom load
 
 var loginView 	= new LoginView({ model: new LoginModel() });
+var contactView = new ContactView({ model: new ContactModel() });
 var appView   	= new AppView();
-var contactView = new ContactView();
 
 // Initiate the router
 var mainRouter = new MainRouter();

@@ -14,8 +14,9 @@ var ContactView = Backbone.View.extend({
 
   registerContactInfo: function(e) {
 		e.preventDefault();
-		alert("button clicked");
-		// send request data
+		//this.model.set({
+		
+		
   }
 
 });
