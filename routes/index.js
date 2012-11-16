@@ -65,8 +65,8 @@ exports.signup = function(req, res){
 exports.contact = function(req, res){
     var xhr = { error: true, message: "Message Failure", data: {req:{}, emailer:{}}};
     req.body    = req.body || {};
-    var name    = req.body.name    || "No Name";
-    var email   = req.body.email   || "No email";
+    var name    = req.body.name    || false;
+    var email   = req.body.email   || false;
     var message = req.body.message || "No message";
     var demo    = req.body.demo    || false;
     

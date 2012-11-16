@@ -19,19 +19,21 @@ $('a').on('click', function(e){
 // submit contact form
 $('form.contact').on('submit', function(e){
     e.preventDefault();
-    var $submit = $(this).find('submit');
+    var $submit = $(this).find('input[type="submit"]');
     $submit.attr('disabled','disabled');
     $.ajax({
         url:'/contact',
         type:'post',
         data:$(this).serialize(),
         success: function(o){
-            $submit.addClass('btn');
-            $submit.addClass('btn-success');
+            if(!o.error){
+                $submit.addClass('btn-success').removeClass('btn-danger');
+            } else {
+                $submit.addClass('btn-danger').removeClass('btn-success');
+            }
         },
         complete: function(o){
-            $submit.prop('disabled', false);
-            console.log(o);
+            $submit.removeAttr('disabled');
         }
     });
 });
