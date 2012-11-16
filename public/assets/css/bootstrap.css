@@ -1,6 +1,4 @@
 @import url(https://fonts.googleapis.com/css?family=Montserrat);
-/*@import url(https://fonts.googleapis.com/css?family=Oswald);
-@import url(https://fonts.googleapis.com/css?family=Noticia+Text);/*
 
 /*!
  * Bootstrap v2.0.4
@@ -11,16 +9,6 @@
  *
  * Designed and built with all the love in the world @twitter by @mdo and @fat.
  */
-iframe {
-    margin-left: 100px;
-}
- footer {
-    background: none repeat scroll 0 0;
-    border-top: 0 none;
-}
-footer #footer-floor {
-    background: none repeat scroll 0 0 #1B1B1B;
-}
 article,
 aside,
 details,
@@ -147,12 +135,12 @@ textarea {
 }
 body {
   margin: 0;
-  font-family: Montserrat/*, Georgia, Utopia, Palatino, 'Palatino Linotype'*/, serif;
+  font-family: Montserrat, sans-serif;
   font-size: 15px;
   line-height: 20px;
-  color: #888888;
-  background-color: #DEDEDE;
-  background-image: url('../img/felt.png');
+  color: #ece9d7;
+  background-color: #2a333c;
+  background-image: url("../img/felt.png");
 }
 a {
   color: #e36b23;
@@ -376,9 +364,9 @@ h4,
 h5,
 h6 {
   margin: 0;
-  /*font-family: 'Oswald', sans-serif;*/
+  font-family: Montserrat, sans-serif;
   font-weight: bold;
-  color: #ff8c00;/*#e36b23;*/
+  color: #e36b23;
   text-rendering: optimizelegibility;
 }
 h1 small,
@@ -563,7 +551,7 @@ cite {
 code,
 pre {
   padding: 0 3px 2px;
-  font-family: Montserrat, Menlo, Monaco, Consolas, "Courier New", monospace;
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
   font-size: 14px;
   color: #333333;
   -webkit-border-radius: 3px;
@@ -642,7 +630,7 @@ input,
 button,
 select,
 textarea {
-  font-family: Montserrat, Georgia, Utopia, Palatino, 'Palatino Linotype', serif;
+  font-family: Montserrat, sans-serif;
 }
 label {
   display: block;
@@ -2998,15 +2986,15 @@ input[type="submit"].btn.btn-mini {
   min-height: 40px;
   padding-left: 20px;
   padding-right: 20px;
-  background-color: #474747;
-  background-image: -moz-linear-gradient(top, #474747, #474747);
-  background-image: -ms-linear-gradient(top, #474747, #474747);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#474747), to(#474747));
-  background-image: -webkit-linear-gradient(top, #474747, #474747);
-  background-image: -o-linear-gradient(top, #474747, #474747);
-  background-image: linear-gradient(top, #474747, #474747);
+  background-color: #2a333c;
+  background-image: -moz-linear-gradient(top, #2a333c, #2a333c);
+  background-image: -ms-linear-gradient(top, #2a333c, #2a333c);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#2a333c), to(#2a333c));
+  background-image: -webkit-linear-gradient(top, #2a333c, #2a333c);
+  background-image: -o-linear-gradient(top, #2a333c, #2a333c);
+  background-image: linear-gradient(top, #2a333c, #2a333c);
   background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#474747', endColorstr='#474747', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#2a333c', endColorstr='#2a333c', GradientType=0);
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
@@ -3098,7 +3086,7 @@ input[type="submit"].btn.btn-mini {
 }
 .navbar-search .search-query {
   padding: 4px 9px;
-  font-family: Montserrat,"Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: Montserrat, sans-serif;
   font-size: 13px;
   font-weight: normal;
   line-height: 1;
@@ -3202,15 +3190,15 @@ input[type="submit"].btn.btn-mini {
 .navbar .nav .active > a:hover {
   color: #e36b23;
   text-decoration: none;
-  background-color: #252525;
+  background-color: #2a333c;
 }
 .navbar .divider-vertical {
   height: 40px;
   width: 1px;
   margin: 0 9px;
   overflow: hidden;
-  background-color: #474747;
-  border-right: 1px solid #474747;
+  background-color: #2a333c;
+  border-right: 1px solid #2a333c;
 }
 .navbar .nav.pull-right {
   margin-left: 10px;
@@ -3222,18 +3210,18 @@ input[type="submit"].btn.btn-mini {
   padding: 7px 10px;
   margin-left: 5px;
   margin-right: 5px;
-  background-color: #474747;
-  background-image: -moz-linear-gradient(top, #474747, #474747);
-  background-image: -ms-linear-gradient(top, #474747, #474747);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#474747), to(#474747));
-  background-image: -webkit-linear-gradient(top, #474747, #474747);
-  background-image: -o-linear-gradient(top, #474747, #474747);
-  background-image: linear-gradient(top, #474747, #474747);
+  background-color: #2a333c;
+  background-image: -moz-linear-gradient(top, #2a333c, #2a333c);
+  background-image: -ms-linear-gradient(top, #2a333c, #2a333c);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#2a333c), to(#2a333c));
+  background-image: -webkit-linear-gradient(top, #2a333c, #2a333c);
+  background-image: -o-linear-gradient(top, #2a333c, #2a333c);
+  background-image: linear-gradient(top, #2a333c, #2a333c);
   background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#474747', endColorstr='#474747', GradientType=0);
-  border-color: #474747 #474747 #0b0d0f;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#2a333c', endColorstr='#2a333c', GradientType=0);
+  border-color: #2a333c #2a333c #0b0d0f;
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-  *background-color: #474747;
+  *background-color: #2a333c;
   /* Darken IE7 buttons by default so they stand out more given they won't have borders */
 
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
@@ -3246,7 +3234,7 @@ input[type="submit"].btn.btn-mini {
 .navbar .btn-navbar.active,
 .navbar .btn-navbar.disabled,
 .navbar .btn-navbar[disabled] {
-  background-color: #474747;
+  background-color: #2a333c;
   *background-color: #20262d;
 }
 .navbar .btn-navbar:active,
@@ -4178,26 +4166,11 @@ a.badge:hover {
   color: #ffffff;
 }
 .hero-unit {
-  padding: 60px;
+  padding-top: 60px;
   margin-bottom: 30px;
-  background-color: #45515f;
-  background-image: url('../img/page_tex_dark.png');
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
   border-radius: 6px;
-}
-.hero-unit h1 {
-  margin-bottom: 0;
-  font-size: 40px;
-  line-height: 1;
-  color: inherit;
-  letter-spacing: -1px;
-}
-.hero-unit p {
-  font-size: 18px;
-  font-weight: 200;
-  line-height: 30px;
-  color: inherit;
 }
 .pull-right {
   float: right;
@@ -4222,14 +4195,14 @@ h3 small,
 h4 small,
 h5 small,
 h6 small {
-  font-family: Montserrat,'Oswald', sans-serif;
+  font-family: Montserrat, sans-serif;
   color: #e36b23;
   text-shadow: -1px 1px 0 #612c0c;
 }
 h1,
 h2,
 legend {
-  /*text-shadow: -2px 2px 0 #612c0c;*/
+  text-shadow: -2px 2px 0 #612c0c;
 }
 h1 {
   line-height: 55px;
@@ -4258,21 +4231,21 @@ blockquote.pull-right {
 }
 .navbar .brand {
   padding: 25px 20px 15px;
-  font-family: Montserrat,'Oswald', sans-serif;
+  font-family: Montserrat, sans-serif;
   font-size: 30px;
   text-shadow: -2px 2px 0 #612c0c;
 }
 .navbar .nav > li > a {
   padding: 27px 20px 13px;
   line-height: 30px;
-  /*font-family: 'Oswald', sans-serif;*/
+  font-family: Montserrat, sans-serif;
   font-size: 22px;
   text-shadow: -2px 2px 0 #612c0c;
 }
 .navbar .navbar-text {
   padding: 27px 20px 13px;
   line-height: 30px;
-  font-family: 'Oswald', sans-serif;
+  font-family: Montserrat, sans-serif;
   font-size: 22px;
   text-shadow: -2px 2px 0 #555555;
 }
@@ -4294,7 +4267,7 @@ blockquote.pull-right {
   padding-top: 20px;
 }
 .navbar .navbar-search .search-query {
-  font-family: Montserrat, Georgia, Utopia, Palatino, 'Palatino Linotype', serif;
+  font-family: Montserrat, sans-serif;
   font-size: 15px;
   line-height: 20px;
   color: #ece9d7;
@@ -4669,13 +4642,13 @@ input,
 button,
 select,
 textarea {
-  font-family: Montserrat, 'Noticia Text', serif;
+  font-family: Montserrat, sans-serif;
 }
 legend {
   border-bottom: none;
 }
 label {
-  color: #888888;
+  color: #ece9d7;
   line-height: 15px;
 }
 .help-block {
@@ -4781,7 +4754,7 @@ label {
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
-  background-color: #474747;
+  background-color: #2a333c;
   border: none;
 }
 .modal-header {
@@ -4800,23 +4773,6 @@ label {
 footer.footer {
   border-top: 1px solid #20262d;
 }
-.well,
-.hero-unit {
-  background-color: #D6D6D4;/*#474747;*/
-  background-image: "../img/home-background.png";
-  border: none;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-}
-.hero-unit h1 {
-  color: #333333;/*#e36b23;*/
-  line-height: 2em;
-}
-.big-media img {
-    float:right;
-}
-
 .progress {
   background-color: #20262d;
   background-image: none;
