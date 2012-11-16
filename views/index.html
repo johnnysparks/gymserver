@@ -15,6 +15,7 @@
     <!-- <script src="js/app/model.js"></script> -->
     <script src="js/app/view.js"></script>
 
+    <script src="js/contact/model.js"></script>
     <script src="js/contact/view.js"></script>
 
     <script src="js/login/model.js"></script>
@@ -56,7 +57,7 @@
             <ul class="nav">
               <li><a href="#faq">FAQ</a></li>
               <li><a href="#contact">Contact</a></li>
-              <li><a href="#login" id="menu_login">Login</a></li>
+              <li><a href="" id="menu_login">Login</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -150,33 +151,39 @@
 
 <script id="main_contact" type="text/html">
   <div class="row">
-		<div class="page-header">
-			<h1>Request Information</h1>
-		</div>
+    <div class="page-header">
+        <h1>Request Information</h1>
+    </div>
     <form class="form-horizontal contact">
-			<div class="control-group">
-				<label class="control-label" for="inputEmail">Email</label>
-				<div class="controls">
-					<input type="text" class="input-medium" placeholder="Email">
-				</div>
-			</div>
-			<div class="control-group">
-				<label class="control-label" for="inputName">Name</label>
-				<div class="controls">
-					<input type="text" class="input-medium" placeholder="Name">
-				</div>
-			</div>
-			<div class="control-group">
-				<label class="control-label" for="inputMessage">Message</label>
-				<div class="controls">
-					<input type="text" class="input-large" placeholder="Message (Optional)">
-				</div>
-			</div>
-			<div class="control-group">
-				<div class="controls">
-					<button type="submit" class="btn">Send Request</button>
-				</div>
-			</div>
+        <div class="control-group">
+            <label class="control-label" for="inputEmail">Email</label>
+            <div class="controls">
+                <input type="text" class="input-medium" placeholder="Email" name="email">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="inputName">Name</label>
+            <div class="controls">
+                <input type="text" class="input-medium" placeholder="Name" name="name">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="inputMessage">Message</label>
+            <div class="controls">
+                <input type="text" class="input-large" placeholder="Message (Optional)" name="message">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">&nbsp;</label>
+            <label>
+                <input type="checkbox" name="demo" checked="checked" /> I would like to be contacted about a demo.
+            </label>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <button type="submit" class="btn">Send Request</button>
+            </div>
+        </div>
     </form>
   </div>
 </script>

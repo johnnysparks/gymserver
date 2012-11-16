@@ -61,4 +61,40 @@ exports.signup = function(req, res){
   });
 }
 
+
+exports.contact = function(req, res){
+    var xhr = { error: true, message: "Message Failure", data: {req:{}, emailer:{}}};
+    req.body    = req.body || {};
+    var name    = req.body.name    || "No Name";
+    var email   = req.body.email   || "No email";
+    var message = req.body.message || "No message";
+    var demo    = req.body.demo    || false;
+    
+    if(name || email){
+        var emailer = new Emailer();
+        emailer.to("johnnyfuchs@gmail.com");
+        emailer.from("johnny@daily.do");
+        emailer.subject("Gymput contact message");
+        var body = "Message from: "+ name +", "+email+"\n\n";
+        body    += message+"\n\n";
+        if(demo) {
+            body    += 'They would like you to talk to them about a demo.';
+        } else {
+            body    += 'Not interested in demo.';
+        }
+        emailer.body(body);
+        emailer.send(function(response){
+          if(response.status !== "error"){
+            xhr.error = false; 
+            xhr.message = "Message Sent"; 
+          }
+          xhr.data.req     = req.body;
+          xhr.data.emailer = response;
+          res.send(xhr);
+        });
+    } else {
+        res.send(xhr);
+    }
+}
+
 exports.insert = function(req, res){ res.send("not implimented"); }

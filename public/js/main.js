@@ -15,4 +15,25 @@ $('a').on('click', function(e){
   mainRouter.navigate( $(this).attr('href'), true);
 });
 
+
+// submit contact form
+$('form.contact').on('submit', function(e){
+    e.preventDefault();
+    var $submit = $(this).find('submit');
+    $submit.attr('disabled','disabled');
+    $.ajax({
+        url:'/contact',
+        type:'post',
+        data:$(this).serialize(),
+        success: function(o){
+            $submit.addClass('btn');
+            $submit.addClass('btn-success');
+        },
+        complete: function(o){
+            $submit.prop('disabled', false);
+            console.log(o);
+        }
+    });
+});
+
 }); // end dom load

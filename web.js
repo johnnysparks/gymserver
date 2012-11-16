@@ -29,11 +29,12 @@ app.get('*',function(req,res,next){
 })
 */
 
-app.get('/',             function(req, res) { res.render('index.html');   });
+app.get('/',            function(req, res) { res.render('index.html');   });
 
 app.post('/login',      routes.login); 
 app.post('/signup',     routes.signup); 
 app.post('/sendemail',  routes.sendemail );
+app.post('/contact',    routes.contact );
 
 
 //app.get('*',              function(req,res){ res.render('index.html');   });
